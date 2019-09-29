@@ -1,0 +1,51 @@
+import org.yaml.snakeyaml.Yaml
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath  group: 'org.yaml', name: 'snakeyaml', version: '1.25'
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'java'
+
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+
+
+task aaa(){
+    doLast {
+        print("hllo------------------------------->")
+        xx();
+    }
+}
+def xx(){
+    print("llo")
+    def file = new File("D:\\IdeaProjects\\demort\\src\\main\\resources\\application.yml")
+    def stream = file.newInputStream();
+    println(file.getName())
+    def yaml = new Yaml();
+    LinkedHashMap<String, Object> dataMap = yaml.load(stream);
+    println(dataMap.toString())
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.25'
+}
