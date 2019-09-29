@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -8,6 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import java.util.List;
 @Configuration
 public class AppWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
+
+    @Autowired
+    Intercepter1 intercepter1;
+
     /**
      * Controller 方法参数注入
      * @param argumentResolvers
@@ -24,7 +29,10 @@ public class AppWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry
-                .addInterceptor(new Intercepter1())
+                .addInterceptor(intercepter1)
                 .addPathPatterns("/**");
+        registry
+                .addInterceptor(new Intercepter2())
+                .addPathPatterns("/**").order(-1);
     }
 }
