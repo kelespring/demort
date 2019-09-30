@@ -2,12 +2,17 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @SpringBootApplication
@@ -30,5 +35,23 @@ public class DemoApplication implements WebMvcConfigurer {
     @GetMapping("/api")
     public Map test(AuthInfo authInfo){
         return null;
+    }
+
+    @PostMapping("/api/v2")
+    public Map test(HttpServletRequest request, @RequestBody Map params){
+        String realm = request.getHeader("realm");
+        params.get("name");
+        return null;
+    }
+
+    @Bean
+    public FilterRegistrationBean someFilterRegistration1() {
+        //新建过滤器注册类
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        // 添加我们写好的过滤器
+        registration.setFilter( new TestFilter());
+        // 设置过滤器的URL模式
+        registration.addUrlPatterns("/*");
+        return registration;
     }
 }
