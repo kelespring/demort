@@ -10,6 +10,8 @@ public class Intercepter2 implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
+        String realm = request.getHeader("realm");
+
         System.out.println("2--------------->");
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }

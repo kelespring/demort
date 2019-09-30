@@ -17,6 +17,8 @@ public class Intercepter1 implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) throws Exception {
         testService.test();
         System.out.println("--------------->");
+        String realm = request.getHeader("realm");
+
         AuthInfo authInfo = new AuthInfo();
         authInfo.setName("---->");
         request.setAttribute("user",authInfo);
