@@ -2,7 +2,7 @@ package com.example.demo;
 
 public class TestAbc implements Runnable {
     public TestAbc(){
-        System.out.println("--->construct");
+        System.out.println("--->construct111");
     }
     public TestAbc(String a){
         System.out.println("--->construct"+a);
