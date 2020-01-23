@@ -16,7 +16,7 @@ public class Intercepter1 implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         testService.test();
-        System.out.println("--------------->");
+        System.out.println("------v11.11--------->");
         String realm = request.getHeader("realm");
 
         AuthInfo authInfo = new AuthInfo();
